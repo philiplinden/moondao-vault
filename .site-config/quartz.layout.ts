@@ -29,8 +29,8 @@ export const defaultContentPageLayout: PageLayout = {
     Component.DesktopOnly(Component.Explorer({
         filterFn: (node) => {
             // exclude files with these tags from navigation
-            let excludeTags = ["reference", "archive"]
-            return excludeTags.some(tag => (node.file?.frontmatter?.tags?.includes(tag) !== true))
+            const excludeTags = new Set(["reference", "archive"])
+            return !excludeTags?.has(node.file?.frontmatter?.tags)
         }
     })),
   ],
