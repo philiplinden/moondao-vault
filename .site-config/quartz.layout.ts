@@ -27,11 +27,11 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.DesktopOnly(Component.Explorer({
-        filterFn: (node) => {
-            // exclude files with these tags from navigation
-            const excludeTags = new Set(["reference", "archive"])
-            return !excludeTags?.has(node.file?.frontmatter?.tags)
-        }
+      filterFn: (node) => {
+        // set containing names of everything you want to filter out
+        const omit = new Set(["archive", "glossary"])
+        return !omit.has(node.name.toLowerCase())
+      },
     })),
   ],
   right: [
